@@ -50,7 +50,7 @@ public class Seguradora {
         return flag;
     }
 
-    public boolean removerCliente(Cliente cliente){
+    public boolean removerCliente(String nome){
         boolean flag = true;
         /*false se o cliente  não esta na lista*/
         /*true se removido */
@@ -74,7 +74,6 @@ public class Seguradora {
 		//retorna a array de sinistros
 		return Sinistros;
 	}
-
 
     public String toString(){
         return "O nome da seguradora eh: " + this.nome + ", com telefone: " + this.telefone + ", com email: " + this.email + " e endereco: "+ this.endereco;

@@ -16,14 +16,19 @@ public class Cliente {
 	//construtor
 	public Cliente(String nome, String endereco, Date dataLicenca, String educacao, String genero, String classeEconomica) {
 		this.nome = nome;
+		this.endereco = endereco;
 		this.dataLicenca = dataLicenca;
 		this.educacao = educacao;
 		this.genero = genero;
 		this.classeEconomica = classeEconomica;
-		this.veiculos = new ArrayList<>();
+		this.veiculos = new ArrayList<>(); /*instancia na variavel veiculos um objeto de ArrayList*/
 	}
+
+	public Cliente(){}
 	
 	//geters e setters
+
+	//getters 
 	public String getNome() {
 		return nome;
 	}
@@ -36,82 +41,47 @@ public class Cliente {
 	public String getEducacao() {
 		return educacao;
 	}
-	
-	
-	public String setGenero(String genero) {
-		this.genero = genero;
+	public String getGenero(){
+		return genero;
 	}
-	public void setcpf(String cpf) {
-		this.cpf = cpf;
+	public String getClasse_economica(){
+		return classeEconomica;
 	}
-	public void setData_nascimento(String dataNascimento) {
-		this.dataNascimento = dataNascimento;
-	}
-	public void setIdade(int idade) {
-		this.idade = idade;
+
+	//setters 
+
+	public void setNome(String nome){
+		this.nome = nome;
 	}
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
+	}	
+	public void setEnducacao(String educacao){
+		this.educacao = educacao;
 	}
-	public boolean validarCPF() {
-		int verificador = 0;
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
+	public void setClasse_economica(String classeEconomica){
+		this.classeEconomica = classeEconomica;
+	}
+	
+	public void adciona_veiculo(String placa){
 		
-		cpf = cpf.replaceAll("\\D","");
-		
-		if (cpf.length() == 11) {
-			verificador++;
-				
-			int peso = 10;
-			int acumula = 0;	
-			
-			//verificacao do primeiro dgt
-			for(int i = 0; i < 9; i++) {
-				//ok
-				int digito = cpf.charAt(i) - 48;
-				acumula += digito*peso;
-				peso--;
-			}
-			
-			int dgt_verificador = ((acumula * 10)%11);
-			if (dgt_verificador == 10){
-				dgt_verificador = 0;
-			}
-			
-
-			if ((dgt_verificador == ((cpf.charAt(cpf.length()-2)) - 48))){
-				verificador++;
-				peso = 11;
-				acumula = 0;
-				
-			}
-
-			for(int i = 0; i < 9; i++) {
-				int digito = cpf.charAt(i) - 48;
-				acumula += digito*(peso);
-				peso--;
-			
-			}
-			
-			acumula += dgt_verificador*peso;
-			dgt_verificador = ((acumula* 10)%11);
-			if (dgt_verificador == (cpf.charAt(cpf.length()-1) - 48)){
-				verificador ++;
-			}
-		}
-		
-		if (verificador == 3){
-			System.out.println("O CPF É VERDADEIRO!!");
-			return true;
-		}
-		
-		else {
-			System.out.println("O CPF É FALSO!!!");
-			return false;
-			}
+	}
+	public void remove_veiculo(Veiculo veiculo){
+		//PROVAVELMENTE VOU PRECISAR DE UMA FUNÇÃO DE BUSCA QUE RECEBE UM VEICULO COMO PARAMETRO E BUSCA NA LISTA
+		//RETORNANDO O INDICE
+		//é mais facil eu buscar pela placa
 	}
 
     public String toString(){
-        return "o nome do cliente eh " + this.nome + ", o cliente tem " + this.idade + " anos, a data de nascimento do cliente é: " + this.dataNascimento + " com CPF: " + this.cpf + " e reside no endereco: " + this.endereco; 
+        return "NOME: " + this.nome + "\n" +
+				"Endereco: " + this.endereco + "\n"+
+				"Educacao: " + this.educacao + "\n"+
+				"Genero: "  + this.genero + "\n"+
+				"classe: "  + this.classeEconomica;
     }
 	
+
 }
