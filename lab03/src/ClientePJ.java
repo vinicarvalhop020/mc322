@@ -60,9 +60,9 @@ public class ClientePJ extends Cliente{
             }
 
             //verificaçao do segundo dgt
-            for(int i = 0; i < 12; i++) {
+            for(int i = 0; i < 13; i++) {
                 int digito = cnpj_verificador.charAt(i) - 48;
-                acumula += digito*peso2[i];            
+                acumula += digito*peso2[i];    
             }
 
             dgt_verificador = ((acumula)%11);
@@ -91,7 +91,9 @@ public class ClientePJ extends Cliente{
     }
 
     public String toString(/*tem como utilizar o toString da classe mãe? ou vai sobrecarregar o metodo? */){
-        return "CNPJ: " + this.cnpj + "\n" +
+        return 
+                super.toString()+"\n"+
+                "CNPJ: " + this.cnpj + "\n" +
                 "Data de Fundacao: " + this.dataFundacao + "\n"; 
     }
 

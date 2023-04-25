@@ -55,6 +55,14 @@ public class Seguradora {
 		}
 		return flag;
 	}
+	public Cliente getCliente(String nome){
+		for(int i=0; i <this.Clientes.size();i++){
+			if (this.Clientes.get(i).getNome() == nome){
+				return this.Clientes.get(i);
+			}
+		}
+
+	}
 
 
 
@@ -75,9 +83,8 @@ public class Seguradora {
 				flag = false;
 		}
 		else{
-			//cliente PJ
 			ClientePJ novo_ClientePJ = new ClientePJ(nome, endereco, dataLicenca, educacao, genero, classeEconomica, CP, dataX);
-			if(novo_ClientePJ.validarcnpj() && buscar_cliente(nome)){
+			if(novo_ClientePJ.validarcnpj() && !buscar_cliente(nome)){
 				Clientes.add(novo_ClientePJ);
 			}
 		else 
