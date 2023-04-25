@@ -49,12 +49,14 @@ public class Seguradora {
 	public boolean buscar_cliente(String nome){
 		boolean flag = false;
 		for(int i = 0; i < this.Clientes.size(); i++){
-			if (this.Clientes.get(i).getNome() == "nome"){
+			if (this.Clientes.get(i).getNome() == nome){
 				flag = true;
 			}
 		}
 		return flag;
 	}
+
+
 
     public boolean cadastrarCliente(String nome,String endereco, Date dataLicenca, String educacao, String genero,String classeEconomica, String CP, Date dataX){
         boolean flag = true;
@@ -62,11 +64,11 @@ public class Seguradora {
         /*true se o cliente nao está na lista e o cpf/cnpj é valido */
         /* false seria se o cliente ja estivesse na lista ou se o cpf/cnpj é invalido*/
 		CP = CP.replaceAll("\\D","");
-
 		if (CP.length() == 11){
 			//cliente PF
 			ClientePF novo_clientePF = new ClientePF(nome,endereco,dataLicenca,educacao,genero,classeEconomica,CP,dataX);
-			if (novo_clientePF.validarCPF() && buscar_cliente(nome)){
+
+			if (novo_clientePF.validarCPF() && !buscar_cliente(nome)){
 				Clientes.add(novo_clientePF);
 			}
 			else 
@@ -89,7 +91,7 @@ public class Seguradora {
         /*false se o cliente  não esta na lista*/
 		if (buscar_cliente(nome)){
 			for(int i = 0; i<this.Clientes.size(); i++){
-				if(Clientes.get(i).getNome() == "nome"){
+				if(Clientes.get(i).getNome() == nome){
 					Clientes.remove(i);
 				}
 			}
@@ -136,10 +138,16 @@ public class Seguradora {
 
 	public ArrayList<Sinistro> listarSinistros(){
 		for (int i = 0; i<Sinistros.size();i++){
-			Sinistros.get(i).toString();
+			System.out.println(Sinistros.get(i).toString());
 		}
 		return Sinistros;
-}
+	}
+	public ArrayList<Cliente> listarclientes(){
+		return Clientes;
+	}
+	
+
+	
     public String toString(){
         return "O nome da seguradora : " + this.nome + "\n"+
 				"telefone: " + this.telefone + "\n"+

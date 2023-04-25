@@ -83,7 +83,9 @@ public class ClientePF extends Cliente{
     }
 
     public String toString(/*tem como utilizar o toString da classe mãe? ou vai sobrecarregar o metodo? */){
-        return "CPF: " + this.cpf + "\n" +
+        return 
+                super.toString()+"\n"+
+                "CPF: " + this.cpf + "\n" +
                 "Data de nascimento:" + this.dataNascimento + "\n"; 
     }
 }
