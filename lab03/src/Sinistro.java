@@ -31,7 +31,6 @@ public class Sinistro {
 	public String getEndereco(){
 		return endereco;
 	}
-	/*nesses 3 retornaria o objeto? */
 	public Seguradora getSeguradora(){
 		return seguradora;
 	}
@@ -53,6 +52,8 @@ public class Sinistro {
 
 
     public String toString(){
-        return "O ID do cliente eh " + this.id + " a data do sinistro eh "+ this.data + " o endereco do sinistro eh "+ this.endereco;
+        return "ID: " + this.id + "\n" +
+				"Data: "+ this.data + "\n"+
+				"Endereco: "+ this.endereco + "\n";
     }
 }

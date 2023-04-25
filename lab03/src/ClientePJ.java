@@ -1,12 +1,13 @@
 import java.util.Date;
 
-
+//classe herdeira de Cliente
 public class ClientePJ extends Cliente{
     private final String cnpj;
     private Date dataFundacao;
 
      //construtor 
-     public ClientePJ (String cnpj, Date dataFundacao){
+     public ClientePJ (String nome, String endereco, Date dataLicenca, String educacao, String genero, String classeEconomica,String cnpj, Date dataFundacao){
+        super(nome,endereco,dataLicenca,educacao,genero,classeEconomica);
         this.cnpj = cnpj; //cnpj só pode ser alterado uma vez por ser uma variavel final
         this.dataFundacao = dataFundacao;
     }
@@ -28,9 +29,57 @@ public class ClientePJ extends Cliente{
     }
 
     public boolean validarcnpj(){
-        //falta criar
-        boolean flag = true;
-        return flag;
+        int verificador = 0;
+        String cnpj_verificador;//variavel necessaria para operacao no cpf que é static
+        cnpj_verificador = cpf.replaceAll("\\D","");
+        
+        if (cnpj_verificador.length() == 14) {
+            verificador++;
+                
+            int[] peso1= (5,4,3,2,9,8,7,6,5,4,3,2);
+            int acumula = 0;	
+            
+            //verificacao do primeiro dgt
+            for(int i = 0; i < 12; i++) {
+                //ok
+                int digito = cnpj_verificador.charAt(i) - 48;
+                acumula += digito*peso1[i];
+            }
+            
+            int dgt_verificador = ((acumula * 10)%11);
+            if (dgt_verificador == 10){
+                dgt_verificador = 0;
+            }
+            
+
+            if ((dgt_verificador == ((cpf_verificador.charAt(cpf_verificador.length()-2)) - 48))){
+                verificador++;
+                peso = 11;
+                acumula = 0;
+                
+            }
+
+            for(int i = 0; i < 9; i++) {
+                int digito = cpf_verificador.charAt(i) - 48;
+                acumula += digito*(peso);
+                peso--;
+            
+            }
+            
+            acumula += dgt_verificador*peso;
+            dgt_verificador = ((acumula* 10)%11);
+            if (dgt_verificador == (cpf_verificador.charAt(cpf_verificador.length()-1) - 48)){
+                verificador ++;
+            }
+        }
+        
+        if (verificador == 3){
+            return true;
+        }
+        
+        else {
+            return false;
+            }
     }
 
     public String toString(/*tem como utilizar o toString da classe mãe? ou vai sobrecarregar o metodo? */){

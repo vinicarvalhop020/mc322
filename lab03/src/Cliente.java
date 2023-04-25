@@ -21,7 +21,7 @@ public class Cliente {
 		this.educacao = educacao;
 		this.genero = genero;
 		this.classeEconomica = classeEconomica;
-		this.veiculos = new ArrayList<>(); /*instancia na variavel veiculos um objeto de ArrayList*/
+		this.veiculos = new ArrayList<>(); /*instancia o objeto lista*/
 	}
 
 	public Cliente(){}
@@ -66,13 +66,21 @@ public class Cliente {
 		this.classeEconomica = classeEconomica;
 	}
 	
-	public void adciona_veiculo(String placa){
-		
+	public void adciona_veiculo(String placa, String marca, String modelo, int anoFabricacao){
+		//a intenção é abstrair do cliente a criação do objeto
+		Veiculo carro_aux = new Veiculo(placa, marca, modelo, anoFabricacao);
+		this.veiculos.add(carro_aux);
 	}
-	public void remove_veiculo(Veiculo veiculo){
-		//PROVAVELMENTE VOU PRECISAR DE UMA FUNÇÃO DE BUSCA QUE RECEBE UM VEICULO COMO PARAMETRO E BUSCA NA LISTA
-		//RETORNANDO O INDICE
-		//é mais facil eu buscar pela placa
+	public void remove_veiculo(String placa){
+		//remover o veiculo pela placa, abstrai do cliente essa funcao
+		//acessar o objeto pelo indice
+		//comparar strings em java é assim?
+		for (int i=0; i <this.veiculos.size(); i++){
+			if (this.veiculos.get(i).getPlaca() == "placa"){
+				this.veiculos.remove(i);
+				break;//esse break sai do laço e da func
+			}
+		}
 	}
 
     public String toString(){
@@ -82,6 +90,4 @@ public class Cliente {
 				"Genero: "  + this.genero + "\n"+
 				"classe: "  + this.classeEconomica;
     }
-	
-
 }
