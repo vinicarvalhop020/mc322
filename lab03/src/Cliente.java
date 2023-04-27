@@ -76,11 +76,19 @@ public class Cliente {
 		//acessar o objeto pelo indice
 		//comparar strings em java é assim?
 		for (int i=0; i <this.veiculos.size(); i++){
-			if (this.veiculos.get(i).getPlaca() == "placa"){
+			if (this.veiculos.get(i).getPlaca().equals(placa)){
 				this.veiculos.remove(i);
 				break;//esse break sai do laço e da func
 			}
 		}
+	}
+
+	public String getIdentificador() {
+		return "";
+	}
+
+	public ArrayList<Veiculo> listar_veiculos(){
+		return veiculos;
 	}
 
     public String toString(){
@@ -90,4 +98,6 @@ public class Cliente {
 				"Genero: "  + this.genero + "\n"+
 				"classe: "  + this.classeEconomica;
     }
+
 }
+	

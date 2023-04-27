@@ -90,6 +90,11 @@ public class ClientePJ extends Cliente{
             }
     }
 
+    @Override
+    public String getIdentificador() {
+		return cnpj;
+	}
+
     public String toString(/*tem como utilizar o toString da classe mãe? ou vai sobrecarregar o metodo? */){
         return 
                 super.toString()+"\n"+

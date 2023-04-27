@@ -28,18 +28,10 @@ public class Main {
         seguradora.cadastrarCliente("Joao","Rua marcechal",datalicenca,"Ensino Superior Completo", "Masculino", "B", "45532618801", datanascimento);
         seguradora.cadastrarCliente("Carlos","Rua Dom bosco",datalicenca2,"Ensino Superior Completo", "Masculino", "A", "14.237.943/0001-47", datafundaca);
         System.out.println(seguradora.listarclientes());
-        seguradora.removerCliente("Carlos");
-        System.out.println(seguradora.listarclientes());
-
-    
-        //funçao de adcionar e remover funcionam
-
-        //como chegar no cliente dito que a lista é privada??
-            //PRECISO ACESSAR O OBJETO CLIENTE NA LISTA CLIENTES PARA ADCIONAR CARROS VALIDAR CPFS ETC
-            //preciso acessar o objeto cliente na lista para mostrar o validar cpf ou cnpj
-            //preciso do objeto cliente na lista de clientes da seguradora para cadastrar um veiculo
         
-        //usar o system in
+            
+        seguradora.busca_cliente("14.237.943/0001-47").adciona_veiculo("CBX", "Ford","esportivo", 2005);
+        System.out.println(seguradora.busca_cliente("14.237.943/0001-47").listar_veiculos());
 
+        }
     }
-}

@@ -82,10 +82,16 @@ public class ClientePF extends Cliente{
             }
     }
 
+    @Override
+    public String getIdentificador() {
+		return cpf;
+	}
+
     public String toString(/*tem como utilizar o toString da classe mãe? ou vai sobrecarregar o metodo? */){
         return 
                 super.toString()+"\n"+
                 "CPF: " + this.cpf + "\n" +
                 "Data de nascimento:" + this.dataNascimento + "\n"; 
     }
+
 }

@@ -46,44 +46,37 @@ public class Seguradora {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
-	public boolean buscar_cliente(String nome){
+	public boolean buscar_cliente(String CPX){
+		//busca pelo cpf
 		boolean flag = false;
 		for(int i = 0; i < this.Clientes.size(); i++){
-			if (this.Clientes.get(i).getNome() == nome){
+			if (this.Clientes.get(i).getIdentificador().equals(CPX)){
 				flag = true;
 			}
 		}
 		return flag;
 	}
-	public Cliente getCliente(String nome){
-		for(int i=0; i <this.Clientes.size();i++){
-			if (this.Clientes.get(i).getNome() == nome){
-				return this.Clientes.get(i);
-			}
-		}
 
-	}
-
-
-
-    public boolean cadastrarCliente(String nome,String endereco, Date dataLicenca, String educacao, String genero,String classeEconomica, String CP, Date dataX){
+    public boolean cadastrarCliente(String nome,String endereco, Date dataLicenca, String educacao, String genero,String classeEconomica, String CPX, Date dataX){
         boolean flag = true;
 		/*o fator determinante de pf e pj é a quantidade de digitos em CP */
         /*true se o cliente nao está na lista e o cpf/cnpj é valido */
         /* false seria se o cliente ja estivesse na lista ou se o cpf/cnpj é invalido*/
-		CP = CP.replaceAll("\\D","");
-		if (CP.length() == 11){
+		String CPX_aux;
+		CPX_aux = CPX.replaceAll("\\D","");
+		if (CPX_aux.length() == 11){
 			//cliente PF
-			ClientePF novo_clientePF = new ClientePF(nome,endereco,dataLicenca,educacao,genero,classeEconomica,CP,dataX);
+			ClientePF novo_clientePF = new ClientePF(nome,endereco,dataLicenca,educacao,genero,classeEconomica,CPX,dataX);
 
-			if (novo_clientePF.validarCPF() && !buscar_cliente(nome)){
+			if (novo_clientePF.validarCPF() && !buscar_cliente(CPX)){
+				//se o cpf for falso nao a validação de cliente
 				Clientes.add(novo_clientePF);
 			}
 			else 
 				flag = false;
 		}
 		else{
-			ClientePJ novo_ClientePJ = new ClientePJ(nome, endereco, dataLicenca, educacao, genero, classeEconomica, CP, dataX);
+			ClientePJ novo_ClientePJ = new ClientePJ(nome, endereco, dataLicenca, educacao, genero, classeEconomica, CPX, dataX);
 			if(novo_ClientePJ.validarcnpj() && !buscar_cliente(nome)){
 				Clientes.add(novo_ClientePJ);
 			}
@@ -93,12 +86,12 @@ public class Seguradora {
         return flag;
     }
 
-    public boolean removerCliente(String nome){
+    public boolean removerCliente(String CPX){
         boolean flag = true;
         /*false se o cliente  não esta na lista*/
-		if (buscar_cliente(nome)){
+		if (buscar_cliente(CPX)){
 			for(int i = 0; i<this.Clientes.size(); i++){
-				if(Clientes.get(i).getNome() == nome){
+				if(Clientes.get(i).getIdentificador().equals(CPX)){
 					Clientes.remove(i);
 				}
 			}
@@ -144,15 +137,23 @@ public class Seguradora {
 	}
 
 	public ArrayList<Sinistro> listarSinistros(){
-		for (int i = 0; i<Sinistros.size();i++){
-			System.out.println(Sinistros.get(i).toString());
-		}
 		return Sinistros;
 	}
 	public ArrayList<Cliente> listarclientes(){
 		return Clientes;
 	}
+
+	public Cliente busca_cliente(String CPX){
 	
+		for (int i = 0; i<this.Clientes.size();i++){
+			if (this.Clientes.get(i).getIdentificador().equals(CPX)){
+				return Clientes.get(i);
+			}
+		}
+		return 
+			null;
+	}
+
 
 	
     public String toString(){
