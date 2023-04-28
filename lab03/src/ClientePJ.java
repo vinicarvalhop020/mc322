@@ -12,7 +12,6 @@ public class ClientePJ extends Cliente{
         this.dataFundacao = dataFundacao;
     }
 
-
     //getters e setters
 
     //getters
@@ -29,6 +28,7 @@ public class ClientePJ extends Cliente{
     }
 
     public boolean validarcnpj(){
+        //algogitmo para validar cnpj
         int verificador = 0;
         String cnpj_verificador;//variavel necessaria para operacao no cpf que é static
         cnpj_verificador = cnpj.replaceAll("\\D","");
@@ -79,8 +79,6 @@ public class ClientePJ extends Cliente{
             }
 
         }
-
-        
         if (verificador == 3){
             return true;
         }

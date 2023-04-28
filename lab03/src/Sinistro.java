@@ -1,15 +1,17 @@
 import java.util.Random;
+import java.util.Date;
+
 
 public class Sinistro {
 	private final int id ; // uma vez setada pelo construtor nao muda
-	private String data;
+	private Date data;
 	private String endereco;
 	private Seguradora seguradora;
 	private Veiculo veiculo; //de cada veiculo, o cliente pode ter muitos sinistros mas um para cada sinistro
 	private Cliente cliente;
 
 	//construtor
-	public Sinistro(String data,String endereco,Seguradora seguradora,Veiculo veiculo,Cliente cliente) {
+	public Sinistro(Date data,String endereco,Seguradora seguradora,Veiculo veiculo,Cliente cliente) {
 
 		Random numero = new Random();
 		this.id = numero.nextInt(99999);
@@ -25,7 +27,7 @@ public class Sinistro {
 	public int getID() {
 		return id;
 	}
-	public String getData() {
+	public Date getData() {
 		return data;
 	}
 	public String getEndereco(){
@@ -37,13 +39,13 @@ public class Sinistro {
 	public Veiculo getVeiculo(){
 		return veiculo;
 	}
-	public Cliente cliente(){
+	public Cliente getCliente(){
 		return cliente;
 	}
 
 	//SETTERS
 	
-	public void setData(String data){
+	public void setData(Date data){
 		this.data = data;		
 	}
 	public void setEndereco(String endereco) {

@@ -67,7 +67,7 @@ public class Cliente {
 	}
 	
 	public void adciona_veiculo(String placa, String marca, String modelo, int anoFabricacao){
-		//a intenção é abstrair do cliente a criação do objeto
+		//a intenção é abstrair do usuario a criação do objeto
 		Veiculo carro_aux = new Veiculo(placa, marca, modelo, anoFabricacao);
 		this.veiculos.add(carro_aux);
 	}
@@ -84,6 +84,7 @@ public class Cliente {
 	}
 
 	public String getIdentificador() {
+		//necessario para o polimorfismo
 		return "";
 	}
 
@@ -91,12 +92,21 @@ public class Cliente {
 		return veiculos;
 	}
 
+	public Veiculo obter_veiculo(String placa){
+		for (int i = 0; i < this.veiculos.size(); i++){
+			if(this.veiculos.get(i).getPlaca().equals(placa)){
+				return this.veiculos.get(i);
+			}	
+		} 
+		return null;
+	}
+
     public String toString(){
         return "NOME: " + this.nome + "\n" +
 				"Endereco: " + this.endereco + "\n"+
 				"Educacao: " + this.educacao + "\n"+
 				"Genero: "  + this.genero + "\n"+
-				"classe: "  + this.classeEconomica;
+				"Classe: "  + this.classeEconomica;
     }
 
 }
