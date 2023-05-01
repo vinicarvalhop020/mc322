@@ -192,7 +192,7 @@ public class Main {
         String modelo_PF = leitor.nextLine();
         System.out.println("Informe o Ano de fabricacao do Veiculo");
         int anoFabricacao_PF = leitor.nextInt();
-
+        leitor.nextLine();//necessario para corrigir um "bug" que o enter é lido após usar nextInt ou qualquer tipo
         seguradora.obter_cliente(CPF_clientePF).adciona_veiculo(placa_PF, marca_PF, modelo_PF,anoFabricacao_PF);
         System.out.println("-----------Carro cadastrado com sucesso------------");
         System.out.println(seguradora.obter_cliente(CPF_clientePF).listar_veiculos());
@@ -206,6 +206,7 @@ public class Main {
         String modelo_PJ = leitor.nextLine();
         System.out.println("Informe o Ano de fabricacao do Veiculo");
         int anoFabricacao_PJ = leitor.nextInt();
+        leitor.nextLine();//necessario para corrigir um "bug" que o enter é lido após usar nextInt ou qualquer tipo
         seguradora.obter_cliente(CNPJ_clientePJ).adciona_veiculo(placa_PJ, marca_PJ, modelo_PJ,anoFabricacao_PJ);
         System.out.println("-----------Carro cadastrado com sucesso------------");
         System.out.println(seguradora.obter_cliente(CNPJ_clientePJ).listar_veiculos());
@@ -232,12 +233,11 @@ public class Main {
         //POR FIM VAMOS BUSCAR UM SINISTRO PELO ID
 
         System.out.println("---------------Vamos buscar um sinistro pelo ID --------------"+"\n");
+            //FUNCIONOU EM UM TESTE DE INSTANCIAMENTO MANUAL
             if(seguradora.buscar_sinistro(seguradora.obter_Sinistro(placa_sinistro).getID())){
                 // veja que -->seguradora.obter_Sinistro(placa_sinistro).getID()<-- retorna um ID para a funçao buscar_sinistro
                 System.out.println("Sinistro encontrado!!!");
                 System.out.println(seguradora.obter_Sinistro(placa_sinistro).toString());
             }
-
     }
-
 }
