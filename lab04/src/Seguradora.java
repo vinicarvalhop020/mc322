@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Seguradora {
 	//variaveis privadas
@@ -25,27 +24,28 @@ public class Seguradora {
 		return nome;
 		//retorna o nome quando pedido
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
 	public String getTelefone() {
 		return telefone;
-	}
-	public void setTelefone(String telefone) {
-		this.telefone = telefone; 
 	}
 	public String getEmail() {
 		return email;
 	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
 	public String getEndereco() {
 		return endereco;
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public void setTelefone(String telefone) {
+		this.telefone = telefone; 
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
+	
 
 	public boolean buscar_cliente(String CPX){
 		//Realiza uma busca na lista de clientes por CPX =(CNPJ ou CPF)
@@ -58,35 +58,18 @@ public class Seguradora {
 		return flag;
 	}
 
-    public boolean cadastrarCliente(String nome,String endereco, Date dataLicenca, String educacao, String genero,String classeEconomica, String CPX, Date dataX){
-        boolean flag = true;
-		/*o fator determinante de pf e pj é a quantidade de digitos em CP */
-        /*true se o cliente nao está na lista e o cpf/cnpj é valido */
-        /* false seria se o cliente ja estivesse na lista ou se o cpf/cnpj é invalido*/
+    public boolean cadastrarCliente(Cliente cliente){
+        boolean flag = false;
+		
+		if (!buscar_cliente(cliente.getIdentificador())){
+			//veja que buscar_cliente retorna false se nao ha esse cliente na lista mas precisamos que ela seja verdadeira caso nao tenha esse o motivo do !
+			Clientes.add(cliente);
+			flag = true;
+			return flag; 
+    	}
+		return flag;
+	}
 
-		if (CPX.replaceAll("\\D","").length() == 11){
-			//cliente PF
-			ClientePF novo_clientePF = new ClientePF(nome,endereco,dataLicenca,educacao,genero,classeEconomica,CPX,dataX);
-
-			if (novo_clientePF.validarCPF() && !buscar_cliente(CPX)){
-				//veja que buscar_cliente retorna false se nao ha esse cliente na lista mas precisamos que ela seja verdadeira caso nao tenha esse o motivo do !
-				Clientes.add(novo_clientePF);
-			}
-			else 
-				flag = false;
-		}
-
-		else{
-			//cliente PJ
-			ClientePJ novo_ClientePJ = new ClientePJ(nome, endereco, dataLicenca, educacao, genero, classeEconomica, CPX, dataX);
-			if(novo_ClientePJ.validarcnpj() && !buscar_cliente(CPX)){
-				Clientes.add(novo_ClientePJ);
-			}
-		else 
-			flag = false;
-		}
-        return flag;
-    }
 
     public boolean removerCliente(String CPX){
         boolean flag = false;
@@ -102,6 +85,12 @@ public class Seguradora {
         return flag;
     }
 
+	public ArrayList<Cliente> listarclientes(){
+		return Clientes;
+	}
+
+
+
 	public boolean buscar_sinistro(int ID){
 		//busca pelo ID, e retorna falso se nao encontra
 		boolean flag = false;
@@ -113,12 +102,11 @@ public class Seguradora {
 		return flag;
 	}
 
-    public boolean gerarSinistro(Date data,String endereco,Seguradora seguradora,Veiculo veiculo,Cliente cliente){
+    public boolean gerarSinistro(Sinistro sinistro){
 		boolean flag = false;
-		Sinistro novo_Sinistro = new Sinistro(data, endereco, seguradora, veiculo, cliente);
-		if ((!buscar_sinistro(novo_Sinistro.getID()))){
+		if ((!buscar_sinistro(sinistro.getID()))){
 			//queremos que nao tenha um sinistro na lista, logo um false em buscar sinistro, negando com ! 
-			this.Sinistros.add(novo_Sinistro);
+			this.Sinistros.add(sinistro);
 			flag = true;
 		}
 		return flag;   
@@ -139,30 +127,28 @@ public class Seguradora {
 	public ArrayList<Sinistro> listarSinistros(){
 		return Sinistros;
 	}
-	public ArrayList<Cliente> listarclientes(){
-		return Clientes;
-	}
 
-	public Cliente obter_cliente(String CPX){
-		//retorna o objeto cliente da lista de clientes
-		for (int i = 0; i<this.Clientes.size(); i++){
-			if (this.Clientes.get(i).getIdentificador().equals(CPX)){
-				return Clientes.get(i);
+	public int qtdeSinistros(Cliente cliente){
+		//procura na lista de sinistros todos os sinistros do cliente
+		int qtdeSinistros = 0;
+		for (int i = 0; i< this.Sinistros.size(); i++){
+			if (Sinistros.get(i).getCliente().getIdentificador().equals(cliente.getIdentificador())){
+				qtdeSinistros++;
 			}
+
 		}
-		return null;
+		return qtdeSinistros;
+
 	}
 
-	public Sinistro obter_Sinistro(String placa){
-		//retorna buscando pela placa
-
-		for (int i = 0; i<this.Sinistros.size();i++){
-			if(this.Sinistros.get(i).getCliente().obter_veiculo(placa).getPlaca().equals(placa)){
-				return Sinistros.get(i);
-			}
-		}
-		return null;
+	public void calcularPrecoSeguroCliente(Cliente cliente){
+		cliente.calculaScore() * (1 + )
 	}
+
+	public void calcularReceita(){
+		
+	}
+
 	
     public String toString(){
         return "O nome da seguradora : " + this.nome + "\n"+

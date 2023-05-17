@@ -1,15 +1,17 @@
-import java.util.Date;
+import java.util.Calendar;
 
 //classe herdeira de Cliente
 public class ClientePJ extends Cliente{
     private final String cnpj;
-    private Date dataFundacao;
+    private Calendar dataFundacao;
+    private int qtdeFuncionarios;
 
      //construtor 
-     public ClientePJ (String nome, String endereco, Date dataLicenca, String educacao, String genero, String classeEconomica,String cnpj, Date dataFundacao){
-        super(nome,endereco,dataLicenca,educacao,genero,classeEconomica);
+     public ClientePJ (String cnpj,String nome, String endereco, Calendar dataFundacao, int qtdeFuncionarios){
+        super(nome,endereco);
         this.cnpj = cnpj; //cnpj só pode ser alterado uma vez por ser uma variavel final
         this.dataFundacao = dataFundacao;
+        this.qtdeFuncionarios = qtdeFuncionarios;
     }
 
     //getters e setters
@@ -18,26 +20,40 @@ public class ClientePJ extends Cliente{
     public String getCNPJ(){
         return cnpj;
     }
-    public Date getData_fundacao(){
+    public Calendar getData_fundacao(){
         return dataFundacao;
+    }
+    public int get_qtdeFuncionarios(){
+        return qtdeFuncionarios;
+    }
+    @Override
+    public String getIdentificador(){
+        return cnpj;
     }
     //setters (não precisa de sett para cpf por ser uma variavel final e o construtor ja alocou valor na memoria)
 
-    public void setData_fundacao(Date dataFundacao){
+    public void setData_fundacao(Calendar dataFundacao){
         this.dataFundacao = dataFundacao;
+    }
+    public void set_qtdeFuncionarios(int qtdeFuncionarios){
+        this.qtdeFuncionarios = qtdeFuncionarios;
     }
 
     @Override
-    public String getIdentificador() {
-		return cnpj;
-	}
+    public double calculaScore(){
 
+        double VALOR_BASE = CalcSeguro.VALOR_BASE.fator;
+        double score = VALOR_BASE * (1 + (qtdeFuncionarios)/100) * qtdCarros();
+
+		return score;
+	}
 
     public String toString(/*tem como utilizar o toString da classe mãe? ou vai sobrecarregar o metodo? */){
         return 
                 super.toString()+"\n"+
                 "CNPJ: " + this.cnpj + "\n" +
-                "Data de Fundacao: " + this.dataFundacao + "\n"; 
+                "Data de Fundacao: " + this.dataFundacao + "\n"+
+                "qtdeFuncionarios: " + this.qtdeFuncionarios +"\n";
     }
 
 }
