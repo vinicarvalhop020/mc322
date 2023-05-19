@@ -1,6 +1,3 @@
-import java.util.Calendar; 
-
-
 public enum CalcSeguro{
 
     
@@ -15,12 +12,7 @@ public enum CalcSeguro{
         this.fator = fator;
     }
 
-    public int idade(Calendar dataNascimento){
-
-        Calendar data_hoje = Calendar.getInstance();
-        int idade = data_hoje.get(Calendar.YEAR) - dataNascimento.get(Calendar.YEAR);
-        return idade;
+    public double getCalcSeguro(){
+        return this.fator;
     }
-
-    //recebe a idade do cliente e usa o switch pra mudar qual fator usar
 }

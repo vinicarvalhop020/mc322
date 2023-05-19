@@ -1,4 +1,7 @@
 import java.util.Calendar;
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
+
 
 //classe herdeira de Cliente
 public class ClientePJ extends Cliente{
@@ -48,11 +51,14 @@ public class ClientePJ extends Cliente{
 		return score;
 	}
 
-    public String toString(/*tem como utilizar o toString da classe mãe? ou vai sobrecarregar o metodo? */){
+    public String toString(){
+        DateFormat ft_data = new SimpleDateFormat("dd-MM-yyyy");
+        String data_fundacao = ft_data.format(this.dataFundacao.getTime());
+
         return 
                 super.toString()+"\n"+
                 "CNPJ: " + this.cnpj + "\n" +
-                "Data de Fundacao: " + this.dataFundacao + "\n"+
+                "Data de Fundacao: " + data_fundacao + "\n"+
                 "qtdeFuncionarios: " + this.qtdeFuncionarios +"\n";
     }
 

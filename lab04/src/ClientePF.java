@@ -1,4 +1,6 @@
 import java.util.Calendar;
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
 
 // classe herdeira de Cliente 
 public class ClientePF extends Cliente{
@@ -64,11 +66,16 @@ public class ClientePF extends Cliente{
     void setClasse_economica(String classeEconomica){
         this.classeEconomica = classeEconomica;
     }
-    public int calculaIdade(){
-        //É CERTO ESE MODO?
+    public long calculaIdade(){
+        //calcula a idade da pessoa realizando a diferenca entre milissegundos entre datas e depois por milissegundos em um ano
     
         Calendar data_hoje = Calendar.getInstance();
-        int idade = data_hoje.get(Calendar.YEAR) - this.dataNascimento.get(Calendar.YEAR);
+        
+        long millisecond_em_ano = 31536000000L;
+    
+        long idade = (data_hoje.getTimeInMillis() - dataNascimento.getTimeInMillis())/millisecond_em_ano;
+       
+
         return idade;
     }
 
@@ -77,7 +84,7 @@ public class ClientePF extends Cliente{
     public double calculaScore(){
 
         double VALOR_BASE = CalcSeguro.VALOR_BASE.fator;
-        int idade = calculaIdade();
+        long  idade = calculaIdade();
         double FATOR_IDADE;
 
         if(18 <= idade && idade < 30){
@@ -97,14 +104,17 @@ public class ClientePF extends Cliente{
 	}
 
     public String toString(){
+        DateFormat ft_data = new SimpleDateFormat("dd-MM-yyyy");
+        String data_licenca = ft_data.format(this.dataLicenca.getTime());
+        String data_nascimento = ft_data.format(this.dataNascimento.getTime());
 
         return 
                 super.toString()+"\n"+
                 "CPF: " + this.cpf + "\n" +
                 "Genero: "+ this.genero+"\n"+
-                "Data Licenca: "+ this.dataLicenca+"\n"+
+                "Data Licenca: "+ data_licenca +"\n"+
                 "Educacao: "+ this.educacao+"\n"+
-                "Data de nascimento: " + this.dataNascimento + "\n"+
+                "Data de nascimento: " + data_nascimento + "\n"+
                 "Classe economica: " + this.classeEconomica+"\n";
 
     }

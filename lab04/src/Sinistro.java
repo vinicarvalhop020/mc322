@@ -1,17 +1,20 @@
 import java.util.Random;
-import java.util.Date;
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
+
 
 
 public class Sinistro {
 	private final int id ; // uma vez setada pelo construtor nao muda
-	private Date data;
+	private Calendar data;
 	private String endereco;
 	private Seguradora seguradora;
 	private Veiculo veiculo; //de cada veiculo, o cliente pode ter muitos sinistros mas um para cada sinistro
 	private Cliente cliente;
 
 	//construtor
-	public Sinistro(Date data,String endereco,Seguradora seguradora,Veiculo veiculo,Cliente cliente) {
+	public Sinistro(Calendar data,String endereco,Seguradora seguradora,Veiculo veiculo,Cliente cliente) {
 
 		Random numero = new Random();
 		this.id = numero.nextInt(99999);
@@ -27,7 +30,7 @@ public class Sinistro {
 	public int getID() {
 		return id;
 	}
-	public Date getData() {
+	public Calendar getData() {
 		return data;
 	}
 	public String getEndereco(){
@@ -45,7 +48,7 @@ public class Sinistro {
 
 	//SETTERS
 	
-	public void setData(Date data){
+	public void setData(Calendar data){
 		this.data = data;		
 	}
 	public void setEndereco(String endereco) {
@@ -54,8 +57,11 @@ public class Sinistro {
 
 
     public String toString(){
+		DateFormat ft_data = new SimpleDateFormat("dd-MM-yyyy");
+        String dataa = ft_data.format(this.data.getTime());
+
         return "ID: " + this.id + "\n" +
-				"Data: "+ this.data + "\n"+
+				"Data: "+	dataa + "\n"+
 				"Endereco: "+ this.endereco + "\n";
     }
 }
