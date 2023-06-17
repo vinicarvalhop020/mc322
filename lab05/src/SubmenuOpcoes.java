@@ -24,6 +24,8 @@ public enum SubmenuOpcoes {
 	}),
 	LISTAR_CLIENTES("Listar cliente",new SubmenuCliente[]{SubmenuCliente.VOLTAR
 	}),
+	LISTAR_CONDUTORES_CL("Listar condutores por cliente",new SubmenuCliente[]{SubmenuCliente.VOLTAR
+	}),
 	LISTAR_SEGUROS_SEG("Listar seguros seguradora",new SubmenuCliente[]{SubmenuCliente.VOLTAR
 	}),
 	LISTAR_SEGUROS_CLI("Listar seguros cliente",new SubmenuCliente[]{SubmenuCliente.VOLTAR

@@ -153,6 +153,9 @@ public class Main {
 		case LISTAR_SEGUROS_SEG:
 			operacoesMain.listarSegurosSeg(seguradoras);
 			break;
+		case LISTAR_CONDUTORES_CL:
+			operacoesMain.listarCondutoresCl(seguradoras);
+			break;
 		case LISTAR_SEGUROS_CLI:
 			operacoesMain.listarSegurosCli(seguradoras);
 			break;
@@ -226,8 +229,7 @@ public class Main {
 
 
 		Intanciacoes.instanciacoes(seguradoras);//instanciacoes necessarias antes de chamar o menu de operacoes
-
-
+		
 		MenuOpcoes op;
 		do {
 			exibirMenuExterno();

@@ -209,7 +209,7 @@ public class Intanciacoes{
 
         seguradora1.cancelarSeguro(seguroPF1n2);
 
-        seguradora1.removerCliente(clientePF1.getIdentificador());
+        //seguradora1.removerCliente(clientePF1.getIdentificador());
 
         System.out.println(seguradora1.getSegurosPorCliente(clientePF1));
 

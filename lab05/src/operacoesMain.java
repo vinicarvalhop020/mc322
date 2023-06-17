@@ -88,7 +88,7 @@ public class operacoesMain {
         cnpjSeguradora = perguntaSeguradora();
         cpfCliente = perguntaCliente();
 
-            if (cnpjSeguradora != null || cpfCliente != null){
+            if (cnpjSeguradora != null && cpfCliente != null){
             Seguradora seguradora_aux = AuxilarSeguradora.obterSeguradora(seguradoras, cnpjSeguradora);
             Cliente Cliente = AuxilarSeguradora.obterCliente(seguradora_aux, cpfCliente);
 
@@ -116,7 +116,7 @@ public class operacoesMain {
         cnpjSeguradora = perguntaSeguradora();
         cnpjCliente = perguntaCliente();
 
-        if(cnpjCliente != null || cnpjSeguradora != null){
+        if(cnpjCliente != null && cnpjSeguradora != null){
             Seguradora seguradora_aux = AuxilarSeguradora.obterSeguradora(seguradoras, cnpjSeguradora);
             Cliente Cliente = AuxilarSeguradora.obterCliente(seguradora_aux, cnpjCliente);
 
@@ -139,7 +139,7 @@ public class operacoesMain {
         String cnpjSeguradora = perguntaSeguradora();
         String cnpjCliente = perguntaCliente();
 
-        if(cnpjCliente != null || cnpjSeguradora != null){
+        if(cnpjCliente != null && cnpjSeguradora != null){
             Seguradora seguradora_aux = AuxilarSeguradora.obterSeguradora(seguradoras, cnpjSeguradora);
             Cliente Cliente = AuxilarSeguradora.obterCliente(seguradora_aux, cnpjCliente);
 
@@ -202,8 +202,6 @@ public class operacoesMain {
         
         cnpjSeguradora = perguntaSeguradora();
 
-
-     
         if(cnpjSeguradora != null){
 
             Seguradora seguradora_aux = AuxilarSeguradora.obterSeguradora(seguradoras, cnpjSeguradora);
@@ -237,7 +235,7 @@ public class operacoesMain {
         identificadorCliente = perguntaCliente();
 
        
-        if(cnpjSeguradora != null || identificadorCliente != null){
+        if(cnpjSeguradora != null && identificadorCliente != null){
             Seguradora seguradora_aux = AuxilarSeguradora.obterSeguradora(seguradoras, cnpjSeguradora);
             Cliente cliente  = AuxilarSeguradora.obterCliente(seguradora_aux, identificadorCliente);
 
@@ -249,6 +247,33 @@ public class operacoesMain {
             return;
         
     }
+
+    public static void listarCondutoresCl(ArrayList<Seguradora> seguradoras){
+        
+        Scanner scan = new Scanner(System.in);
+
+        ArrayList<Seguro> seguros = new ArrayList<Seguro>();
+
+        String cnpjSeguradora;
+        String identificadorCliente;
+
+        cnpjSeguradora = perguntaSeguradora();
+        identificadorCliente = perguntaCliente();
+
+       
+        if(cnpjSeguradora != null && identificadorCliente != null){
+            Seguradora seguradora_aux = AuxilarSeguradora.obterSeguradora(seguradoras, cnpjSeguradora);
+            Cliente cliente = AuxilarSeguradora.obterCliente(seguradora_aux, identificadorCliente);
+            seguros = seguradora_aux.getSegurosPorCliente(cliente);
+            for (Seguro seguro: seguros){
+                System.out.println(AuxiliarCliente.listarCondutoresStr(seguro.getLCondutores()));
+                }
+        }
+        else    
+            return;
+        
+    }
+
 
     public static void listarSegurosSeg(ArrayList<Seguradora> seguradoras){
 
@@ -283,7 +308,7 @@ public class operacoesMain {
     identificadorCliente = perguntaCliente();
     cnpjSeguradora = perguntaSeguradora();
 
-    if(cnpjSeguradora != null||identificadorCliente != null){
+    if(cnpjSeguradora != null && identificadorCliente != null){
 
         Seguradora seguradora_aux = AuxilarSeguradora.obterSeguradora(seguradoras, cnpjSeguradora);
         Cliente Cliente_aux = AuxilarSeguradora.obterCliente(seguradora_aux, identificadorCliente);
@@ -331,7 +356,7 @@ public class operacoesMain {
         cnpjSeguradora = perguntaSeguradora();   
         identificadorCliente = perguntaCliente();
 
-        if(cnpjSeguradora != null|| identificadorCliente != null){
+        if(cnpjSeguradora != null && identificadorCliente != null){
             Seguradora seguradora_aux = AuxilarSeguradora.obterSeguradora(seguradoras, cnpjSeguradora);
             Cliente Cliente_aux = AuxilarSeguradora.obterCliente(seguradora_aux, identificadorCliente);
             
@@ -361,6 +386,8 @@ public class operacoesMain {
         String cnpjSeg = perguntaSeguradora();
         String identificador = perguntaCliente();
         String cpfCondutor = perguntaCondutor();
+
+        if(cnpjSeg != null && identificador != null && cpfCondutor != null){
         Seguradora seguradora = AuxilarSeguradora.obterSeguradora(seguradoras, cnpjSeg);
         Cliente cliente = AuxilarSeguradora.obterCliente(seguradora, identificador);
         ArrayList<Seguro> segurosCL = new ArrayList<Seguro>();
@@ -370,6 +397,11 @@ public class operacoesMain {
             seguro.excluirCondutor(cpfCondutor);
         }
         seguradora.atualizaValorSeguros();
+        }
+        else    
+            return;
+
+
 
     }
 
@@ -377,11 +409,15 @@ public class operacoesMain {
 
         String cnpjSeg = perguntaSeguradora();
         String identificador = perguntaCliente();
+        if(cnpjSeg != null && identificador != null){
         Seguradora seguradora = AuxilarSeguradora.obterSeguradora(seguradoras, cnpjSeg);
         Cliente cliente = AuxilarSeguradora.obterCliente(seguradora, identificador);
 
         ((ClientePJ)cliente).atualizarFrota(EnumAtualizaFrota.REMOVE_FROTA);
         seguradora.atualizaValorSeguros();
+        }
+        else
+            return;
 
 
     }
@@ -390,45 +426,63 @@ public class operacoesMain {
 
         String cnpjSeg = perguntaSeguradora();
         String identificador = perguntaCliente();
+
+        
         Seguradora seguradora = AuxilarSeguradora.obterSeguradora(seguradoras, cnpjSeg);
         Cliente cliente = AuxilarSeguradora.obterCliente(seguradora, identificador);
-
+        if(cnpjSeg != null && identificador != null){
         ((ClientePJ)cliente).atualizarFrota(EnumAtualizaFrota.REMOVE_VEICULO);
         seguradora.atualizaValorSeguros();
+        }
+        else
+            return;
+
     }
     
     public static void excluirVeiculoPf(ArrayList<Seguradora> seguradoras){
 
         String cnpjSeg = perguntaSeguradora();
         String identificador = perguntaCliente();
-        Seguradora seguradora = AuxilarSeguradora.obterSeguradora(seguradoras, cnpjSeg);
-        Cliente cliente = AuxilarSeguradora.obterCliente(seguradora, identificador);
-        String placa = perguntaVeiculo();
-        Veiculo veiculo = AuxiliarCliente.obter_veiculo(placa, ((ClientePF)cliente).getVeiculos());
-        ((ClientePF)cliente).removerVeiculo(veiculo);
-        seguradora.atualizaValorSeguros();
+
+        if(cnpjSeg != null && identificador != null){
+            Seguradora seguradora = AuxilarSeguradora.obterSeguradora(seguradoras, cnpjSeg);
+            Cliente cliente = AuxilarSeguradora.obterCliente(seguradora, identificador);
+            String placa = perguntaVeiculo();
+            Veiculo veiculo = AuxiliarCliente.obter_veiculo(placa, ((ClientePF)cliente).getVeiculos());
+            ((ClientePF)cliente).removerVeiculo(veiculo);
+            seguradora.atualizaValorSeguros();
+        }
+        else 
+            return;
 
     }
     
     public static void excluirSeguro(ArrayList<Seguradora> seguradoras){
 
         String cnpjSeg = perguntaSeguradora();
-        Seguradora seguradora = AuxilarSeguradora.obterSeguradora(seguradoras, cnpjSeg);
-        int id = perguntaSeguro();
-        Seguro seguro = AuxilarSeguradora.obterSeguro(seguradora,id);
-        seguradora.cancelarSeguro(seguro);
-        seguradora.calcularReceita();
+        if(cnpjSeg != null){
+            Seguradora seguradora = AuxilarSeguradora.obterSeguradora(seguradoras, cnpjSeg);
+            int id = perguntaSeguro();
+            Seguro seguro = AuxilarSeguradora.obterSeguro(seguradora,id);
+            seguradora.cancelarSeguro(seguro);
+            seguradora.calcularReceita();
+        }
+        else
+            return;
 
     }
 
     public static void excluirSinistro(ArrayList<Seguradora> seguradoras){
         //REVER
         String cnpjSeg = perguntaSeguradora();
-        Seguradora seguradora = AuxilarSeguradora.obterSeguradora(seguradoras, cnpjSeg);
         int idSinistro = perguntaSinistro();
-        Sinistro sinistro = AuxilarSeguradora.obterSinistro(seguradora,idSinistro);
-        seguradora.removerSinistro(sinistro);
-        seguradora.atualizaValorSeguros();
+        if (cnpjSeg != null){
+            Seguradora seguradora = AuxilarSeguradora.obterSeguradora(seguradoras, cnpjSeg);
+            Sinistro sinistro = AuxilarSeguradora.obterSinistro(seguradora,idSinistro);
+            seguradora.removerSinistro(sinistro);
+            seguradora.atualizaValorSeguros();
+        }
+        else return;
     }
 
     public static void gerarSeguroPF(ArrayList<Seguradora> seguradoras)throws ParseException{
@@ -438,14 +492,18 @@ public class operacoesMain {
         String cpfCliente = perguntaCliente();
         String placaVeiculoSegurado = perguntaVeiculo();
 
-        Seguradora seguradora = AuxilarSeguradora.obterSeguradora(seguradoras, cnpjSeguradora);
-        Cliente clientePF = AuxilarSeguradora.obterCliente(seguradora, cpfCliente);
-        Veiculo veiculo = AuxiliarCliente.obter_veiculo(placaVeiculoSegurado, ((ClientePF)clientePF).getVeiculos());
-        
+        if(cnpjSeguradora != null && cpfCliente != null){
+            Seguradora seguradora = AuxilarSeguradora.obterSeguradora(seguradoras, cnpjSeguradora);
+            Cliente clientePF = AuxilarSeguradora.obterCliente(seguradora, cpfCliente);
+            Veiculo veiculo = AuxiliarCliente.obter_veiculo(placaVeiculoSegurado, ((ClientePF)clientePF).getVeiculos());
+            
 
-        Seguro novoSeguroPF = CriaObjetos.criaSeguroPF(seguradora, veiculo, clientePF);
+            Seguro novoSeguroPF = CriaObjetos.criaSeguroPF(seguradora, veiculo, clientePF);
 
-        seguradora.gerarSeguro(novoSeguroPF);
+            seguradora.gerarSeguro(novoSeguroPF);
+        }
+        else   
+            return;
 
     }
 
@@ -456,13 +514,16 @@ public class operacoesMain {
         String cnpjCliente = perguntaCliente();
         String codeFrota = perguntaFrota();
 
+        if(cnpjSeguradora != null && cnpjCliente != null){
         Seguradora seguradora = AuxilarSeguradora.obterSeguradora(seguradoras, cnpjSeguradora);
         Cliente clientePJ = AuxilarSeguradora.obterCliente(seguradora, cnpjCliente);
         Frota frota = AuxiliarCliente.ObterFrota(codeFrota, ((ClientePJ)clientePJ).getListaFrota());
     
         Seguro novoSeguroPJ = CriaObjetos.criaSeguroPJ(seguradora,frota,clientePJ);
         seguradora.gerarSeguro(novoSeguroPJ);
-
+        }
+        else    
+            return;
     }
         
     public static void gerarSinistro(ArrayList<Seguradora> seguradoras)throws ParseException{
@@ -473,11 +534,15 @@ public class operacoesMain {
         int seguroid = perguntaSeguro();
         String cpfCondutor = perguntaCondutor();
 
-        Seguradora seguradora = AuxilarSeguradora.obterSeguradora(seguradoras, cnpjSeguradora);
-        Seguro seguro = AuxilarSeguradora.obterSeguro(seguradora, seguroid);
-      
-        seguro.gerarSinistro(cpfCondutor);
-        seguro.calcularValor(); //atualiza o valor do seguro
+        if(cnpjSeguradora != null && cpfCondutor != null){
+            Seguradora seguradora = AuxilarSeguradora.obterSeguradora(seguradoras, cnpjSeguradora);
+            Seguro seguro = AuxilarSeguradora.obterSeguro(seguradora, seguroid);
+        
+            seguro.gerarSinistro(cpfCondutor);
+            seguro.calcularValor(); //atualiza o valor do seguro
+        }
+        else 
+            return;
 
     }
 

@@ -20,6 +20,7 @@ public enum MenuOpcoes {
 			SubmenuOpcoes.LISTAR_SEGUROS_CLI,
 			SubmenuOpcoes.LISTAR_SINISTROS_SEG,
 			SubmenuOpcoes.LISTAR_SINISTROS_CL,
+			SubmenuOpcoes.LISTAR_CONDUTORES_CL,
 			SubmenuOpcoes.LISTAR_VEICULOS_PF,
 			SubmenuOpcoes.LISTAR_FROTA_PJ,
 			SubmenuOpcoes.VOLTAR

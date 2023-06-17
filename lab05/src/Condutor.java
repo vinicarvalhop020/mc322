@@ -78,4 +78,23 @@ public class Condutor {
         }
         return flag;
     }
+
+    public String toString(){
+        String autorizado;
+
+        if (this.autorizado){
+            autorizado = "permitido";
+        }
+        else 
+            autorizado = "nao permitido";
+        return  "Nome : " + this.nome + "\n" +
+                "CPF : " + this.cpf + "\n" +
+				"Telefone : " +this.telefone + "\n"+ 
+				"Endereco: " + this.endereco + "\n"+
+				"Email: " + this.email + "\n"+
+                "Data de Nascimento: "+ this.dataNasc + "\n"+
+                "Autorizacao :"+ autorizado
+                + "\n";
+    }
+
 }

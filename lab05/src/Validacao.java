@@ -123,7 +123,7 @@ public class Validacao{
         String limpa_identificador;
         limpa_identificador = identificador.replaceAll("\\D","");
 
-        if(limpa_identificador.length() == 9){//igual a 9 é PF
+        if(limpa_identificador.length() == 11){//igual a 9 é PF
             return Validacao.validarCPF(identificador);
         }
         else //diferente de 9 é PJ
