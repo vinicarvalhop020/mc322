@@ -4,10 +4,9 @@ import java.text.SimpleDateFormat;
 import java.text.ParseException;
 
 
-//CLASSE MEGA UTIL MAS NECESSITA-SE ARRUMAR :)
+//Classe que é uma fabrica de criar objetos
 
 public class CriaObjetos {
-//tem a função de criar objetos s
 
     public static ClientePF cria_ClientePF() throws ParseException{
         SimpleDateFormat formata_data = new SimpleDateFormat("dd/MM/yyyy");

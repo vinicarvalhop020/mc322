@@ -123,7 +123,7 @@ public class ClientePJ extends Cliente{
     }
 
     public ArrayList<Veiculo> getVeiculosPorFrota(String codeDaFrota){
-        //no laboratorio essa funcao esta como boolean mas e uma get.Confuso?
+        
 
         ArrayList<Veiculo> ListaVeiculoFrota = new ArrayList<>();
         Frota frota_aux;

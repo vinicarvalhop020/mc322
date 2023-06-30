@@ -1,15 +1,12 @@
 import java.util.ArrayList;
 
 public class AuxilarSeguradora {
-    //essa classe estatica tem como funçao organizar melhor o codigo
-    //separando da classe seguradora os metodos uteis 
-    //buscar cliente
-    //buscar Sinistro
+	//Classe estatica contendo funcoes uteis para utilizacao da seguradora
 
 
 
     public static boolean buscar_cliente(String identificador, ArrayList<Cliente> clientes){
-        //recebe uma lista de clientes e um identificador
+        //busca cliente, recebendo uma lista de clientes e um identificador
 		boolean flag = false;
 		for(int i = 0; i < clientes.size(); i++){
 			if (clientes.get(i).getIdentificador().equals(identificador)){
@@ -20,7 +17,7 @@ public class AuxilarSeguradora {
 	}
 
 	public static boolean buscar_condutor(String identificador, ArrayList<Condutor> condutores){
-        //recebe uma lista de clientes e um identificador
+        //busca condutor, recebendo uma lista de clientes e um identificador
 		boolean flag = false;
 		for(int i = 0; i < condutores.size(); i++){
 			if (condutores.get(i).getCPF().equals(identificador)){

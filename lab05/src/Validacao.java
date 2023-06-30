@@ -56,7 +56,7 @@ public class Validacao{
     }
 
     public static boolean validarcnpj(String cnpj){
-        //algogitmo para validar cnpj
+        //algoritmo para validar cnpj
         int verificador = 0;
         String cnpj_verificador;//variavel necessaria para operacao no cpf que é static
         cnpj_verificador = cnpj.replaceAll("\\D","");
@@ -118,7 +118,6 @@ public class Validacao{
 
     public static boolean validar_identificador(String identificador){
         //funcao que reconhece se o identificador é pj ou cpf
-        //Acho que obedece POO
 
         String limpa_identificador;
         limpa_identificador = identificador.replaceAll("\\D","");

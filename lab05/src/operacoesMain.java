@@ -527,8 +527,6 @@ public class operacoesMain {
     }
         
     public static void gerarSinistro(ArrayList<Seguradora> seguradoras)throws ParseException{
-        //qual a seguradora?qual o cliente?qual o seguro? a funcao de gerar um sinistro é do seguro
-        //para gerar um sinistro eu preciso do condutor tbm, note que na classe condutor tem o metodo de adcionar sinistro
 
         String cnpjSeguradora = perguntaSeguradora();
         int seguroid = perguntaSeguro();

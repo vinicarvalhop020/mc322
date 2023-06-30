@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 
 public class Intanciacoes{
+    //instanciacoes, que ocorrem antes do menu iniciar
 
     public static void instanciacoes(ArrayList<Seguradora> seguradoras)throws ParseException{
 

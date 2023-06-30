@@ -1,7 +1,8 @@
 import java.util.ArrayList;
-//classe estatica que compoe todas as funcoes uteis a classe cliente
 import java.util.Calendar;
 import java.util.Date;
+
+//Classe estatica contendo funcoes uteis para utilizacao de todo o codigo, mas com foco em clientes
 
 
 public class AuxiliarCliente {
@@ -42,7 +43,7 @@ public class AuxiliarCliente {
     }
 
     public static String listarVeiculosStr(ArrayList<Veiculo> veiculos){
-        //devolve uma BIG string usando o tostring de cada veiculo da lista 
+        //retorna uma string o qual é a soma dos tostring de cada veiculo da lista 
         String aux = "Lista de Veiculos: ";
 
         for(int i = 0; i < veiculos.size(); i++){
@@ -53,7 +54,7 @@ public class AuxiliarCliente {
     }
 
     public static String listarFrotaStr(ArrayList<Frota> frotas){
-        //Curioso, o to string de Frota ira chamar a funcao listarVeiculoStr que ira chamar o toString de cada veiculo
+        
         String aux = "Lista de Frotas: "+"\n";
 
         for(int i = 0; i < frotas.size(); i++){
@@ -64,7 +65,6 @@ public class AuxiliarCliente {
     }
 
     public static String listarCondutoresStr(ArrayList<Condutor> condutores){
-        //Curioso, o to string de Frota ira chamar a funcao listarVeiculoStr que ira chamar o toString de cada veiculo
         String aux = "Lista de condutores: "+"\n";
 
         for(Condutor condutorls : condutores){
